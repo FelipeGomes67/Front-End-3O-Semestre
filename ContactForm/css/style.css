@@ -1,0 +1,163 @@
+@font-face {
+    font-family: Architect;
+    src: url('./fonts/Architects_Daughter/ArchitectsDaughter-Regular.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: linear-gradient(to right bottom, #18a2c9, #72c3bd);
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* border: 1px solid white; */
+}
+
+.container--flex-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__tittle{
+    font-family: Architect;
+    color: #DED27C;
+}
+
+.header__text{
+    font-family: Architect;
+    color: white;
+}
+
+.header{
+    padding: 10px 0;
+    /* border: 1px solid salmon; */
+}
+
+.header__logo{
+    width: 100px;
+}
+
+
+/* FORMULARIO */
+.contact-form{
+    padding: 10px 0;
+    /* border: 1px solid yellow; */
+}
+
+.contact-form__linha{
+    display: flex;
+    /* border: 1px solid rebeccapurple; */
+}
+
+.contact-form__col-a{
+    width: 10%;
+    display: flex;
+    align-items: center;
+}
+
+.contact-form__col-b{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    border: 2px;
+    margin-bottom: 10px;
+
+}
+
+.contact-form__input--metade{
+    width: 49%;
+    height: 35px;
+}
+
+.contact-form__label{
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    font-weight: 600;
+    
+}
+
+.contact-form__input{
+    color: #18a2c9;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    transition: background-color 0.4s, color 0.4s, border 0.4s;
+}
+
+.contact-form__input:focus{
+    background-color: #72c3bd;
+    color: white;
+    border: 1px solid white;
+
+}
+
+.contact-form__input--inteira{
+    width: 100%;
+    height: 35px;
+}
+
+.contact-form__input--terco{
+    width: 32%;
+    height: 35px;
+}
+
+.contact-form__input--quarto{
+    width: 24%;
+    height: 35px;
+}
+
+.contact-form__textarea{
+    width: 100%;
+    height: 100px;
+    color: #18a2c9;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    transition: background-color 0.4s, color 0.4s, border 0.4s;
+}   
+
+.contact-form__textarea:focus{
+    background-color: #72c3bd;
+    color: white;
+    border: 1px solid white;
+
+}
+
+.contact-form__botao{
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-form__botao--button{
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
+
+@media screen and (max-width: 991px) {
+    
+}
+
+@media screen and (max-width: 768px) {
+    
+}
