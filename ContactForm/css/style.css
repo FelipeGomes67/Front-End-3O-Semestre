@@ -139,11 +139,13 @@ body{
 
 .contact-form__botao{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-top: 20px;
 }
 
 .contact-form__botao--button{
-    width: 100%;
+    width: 450px;
     height: 40px;
     background-color: transparent;
     color: white;
