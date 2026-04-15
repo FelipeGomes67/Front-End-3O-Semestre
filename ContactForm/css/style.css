@@ -13,7 +13,7 @@ body {
     background-image: linear-gradient(to right bottom, #18a2c9, #72c3bd);
     background-repeat: no-repeat;
     width: 100vw;
-    /* height: 100vh; */
+    height: 100vh;
 }
 
 .container {
@@ -159,7 +159,9 @@ body {
 
     .header__logo {
         width: 80px;
-
+    }
+    .header__text {
+        font-size: 14px;
     }
 
     .contact-form__label {
@@ -168,22 +170,29 @@ body {
 }
 
 @media screen and (max-width: 767px) {
-    .container{
-        padding: 0 15px;
+    body{
+        height: auto;
     }
+
+    .header__logo {
+        width: 80px;
+    }
+
+    .header__text {
+        font-size: 15px;
+        text-align: center;
+    }
+    
     .contact-form__col-a {
         display: none;
     }
 
     .contact-form__linha {
-        display: flex;
         justify-content: center;
     }
 
     .contact-form__col-b {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
+        flex-wrap: wrap;
     }
 
     .contact-form__input,

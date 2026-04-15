@@ -9,99 +9,222 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="container container--flex-column">
-            <img class="header__logo" src="./images/logotipo.svg " alt="">
-            <h1 class="header__tittle">Contact from</h1>
-            <p class="header__text">Insira os dados do contato e clique em cadastrar</p>
-        </div>
-    </header>
+    <main>
 
-    <div class="container">
-        <form class="contact-form" action="">
-            <div class="contact-form__linha">
-                <div class="contact-form__col-a"><label class="contact-form__label" for="nome">Nome</label></div>
-                <div class="contact-form__col-b">
-                    <input class="contact-form__input contact-form__input--metade" name="nome" id="nome" type="text"
-                        placeholder="Nome">
-                    <input class="contact-form__input contact-form__input--metade" name="sobrenome" id="sobrenome"
-                        type="text" placeholder="Sobrenome">
-                </div>
+        <header class="header">
+            <div class="container container--flex-column">
+                <img class="header__logo" src="./images/logotipo.svg " alt="">
+                <h1 class="header__tittle">Contact from</h1>
+                <p class="header__text">Insira os dados do contato e clique em cadastrar</p>
             </div>
+        </header>
 
-            <div class="contact-form__linha">
-                <div class="contact-form__col-a"><label class="contact-form__label" for="email">E-mail</label></div>
-                <div class="contact-form__col-b"><input class="contact-form__input contact-form__input--inteira"
-                        name="email" id="email" type="email" placeholder="E-mail"></div>
-            </div>
-
-            <div class="contact-form__linha">
-                <div class="contact-form__col-a"><label class="contact-form__label" for="telefone">Telefone</label>
-                </div>
-                <div class="contact-form__col-b">
-                    <input class="contact-form__input contact-form__input--terco" name="telefone" id="telefone"
-                        type="tel" placeholder="+55 ">
-                    <input class="contact-form__input contact-form__input--terco" name="ddd" id="ddd" type="tel"
-                        placeholder="ddd ">
-                    <input class="contact-form__input contact-form__input--terco" name="telefone" id="telefone"
-                        type="tel" placeholder="ex: 99999-9999 ">
-                </div>
-            </div>
-
-            <div class="contact-form__linha">
-                <div class="contact-form__col-a"><label class="contact-form__label" for="endereco">Endereço</label>
-                </div>
-                <div class="contact-form__col-b">
-                    <input class="contact-form__input contact-form__input--quarto" name="cep" id="cep" type="text"
-                        placeholder="cep: 99999-999">
-                    <input class="contact-form__input contact-form__input--metade" name="rua" id="rua" type="text"
-                        placeholder="Rua lá de Casa">
-                    <input class="contact-form__input contact-form__input--quarto" name="numero" id="numero" type="text"
-                        placeholder="Ex: 555">
-                </div>
-            </div>
-
-            <div class="contact-form__linha">
-                <div class="contact-form__col-a"><label class="contact-form__label" for=""></label></div>
-                <div class="contact-form__col-b">
-                    <input class="contact-form__input contact-form__input--terco" name="complemento" id="complemento"
-                        type="text" placeholder="Apto. 12 Bloco X ">
-                    <input class="contact-form__input contact-form__input--terco" name="bairro" id="bairro" type="text"
-                        placeholder="Bairro">
-                    <input class="contact-form__input contact-form__input--terco" name="cidade" id="cidade" type="text"
-                        placeholder="Cidade">
-
-                </div>
-            </div>
-            <div class="contact-form__linha">
-                <div class="contact-form__col-a"><label class="contact-form__label" for=""></label></div>
-                <div class="contact-form__col-b">
-                    <input class="contact-form__input contact-form__input--terco" name="estado" id="estado" type="text"
-                        placeholder="Estado ">
-                </div>
-            </div>
-            <div class="contact-form__linha">
-                <div class="contact-form__col-a"><label class="contact-form__label" for="anotacoes">Anotações</label>
-                </div>
-                <div class="contact-form__col-b">
-                    <textarea class="contact-form__textarea" name="anotacoes" id="anotacoes" rows="4" cols="50"
-                        placeholder="Suas anotações aqui"></textarea>
-                </div>
-            </div>
-
-            <div class="contact-form__linha">
-                <div class="contact-form__col-a"></div>
+        <div class="container">
+            <form class="contact-form" action="">
+                <div class="contact-form__linha">
+                    <div class="contact-form__col-a"><label class="contact-form__label" for="nome">Nome</label></div>
                     <div class="contact-form__col-b">
-                        <button type="submit" id="Cadastrar" name="Cadastrar"
-                        class="contact-form__button contact-form__input--metade">Cadastrar</button>
-                        <button type="reset" id="Limpar" name="Limpar"
-                        class="contact-form__button contact-form__input--metade">Limpar</button>
+                        <input class="contact-form__input contact-form__input--metade" name="nome" id="nome" type="text"
+                            placeholder="Nome">
+                        <input class="contact-form__input contact-form__input--metade" name="sobrenome" id="sobrenome"
+                            type="text" placeholder="Sobrenome">
+                    </div>
                 </div>
-            </div>
-        </form>
-    </div>
+
+                <div class="contact-form__linha">
+                    <div class="contact-form__col-a"><label class="contact-form__label" for="email">E-mail</label></div>
+                    <div class="contact-form__col-b"><input class="contact-form__input contact-form__input--inteira"
+                            name="email" id="email" type="email" placeholder="E-mail"></div>
+                </div>
+
+                <div class="contact-form__linha">
+                    <div class="contact-form__col-a"><label class="contact-form__label" for="telefone">Telefone</label>
+                    </div>
+                    <div class="contact-form__col-b">
+                        <input class="contact-form__input contact-form__input--terco" name="telefone" id="pais"
+                            type="tel" placeholder="+55 ">
+                        <input class="contact-form__input contact-form__input--terco" name="ddd" id="ddd" type="tel"
+                            placeholder="ddd ">
+                        <input class="contact-form__input contact-form__input--terco" name="telefone" id="telefone"
+                            type="tel" placeholder="ex: 99999-9999 ">
+                    </div>
+                </div>
+
+                <div class="contact-form__linha">
+                    <div class="contact-form__col-a"><label class="contact-form__label" for="endereco">Endereço</label>
+                    </div>
+                    <div class="contact-form__col-b">
+                        <input class="contact-form__input contact-form__input--quarto" name="cep" id="cep" type="text"
+                            placeholder="cep: 99999-999">
+                        <input class="contact-form__input contact-form__input--metade" name="rua" id="rua" type="text"
+                            placeholder="Rua lá de Casa">
+                        <input class="contact-form__input contact-form__input--quarto" name="numero" id="numero"
+                            type="text" placeholder="Ex: 555">
+                    </div>
+                </div>
+
+                <div class="contact-form__linha">
+                    <div class="contact-form__col-a"><label class="contact-form__label" for=""></label></div>
+                    <div class="contact-form__col-b">
+                        <input class="contact-form__input contact-form__input--terco" name="complemento"
+                            id="complemento" type="text" placeholder="Apto. 12 Bloco X ">
+                        <input class="contact-form__input contact-form__input--terco" name="bairro" id="bairro"
+                            type="text" placeholder="Bairro">
+                        <input class="contact-form__input contact-form__input--terco" name="cidade" id="cidade"
+                            type="text" placeholder="Cidade">
+
+                    </div>
+                </div>
+                <div class="contact-form__linha">
+                    <div class="contact-form__col-a"><label class="contact-form__label" for=""></label></div>
+                    <div class="contact-form__col-b">
+                        <input class="contact-form__input contact-form__input--terco" name="estado" id="estado"
+                            type="text" placeholder="Estado ">
+                    </div>
+                </div>
+                <div class="contact-form__linha">
+                    <div class="contact-form__col-a"><label class="contact-form__label"
+                            for="anotacoes">Anotações</label>
+                    </div>
+                    <div class="contact-form__col-b">
+                        <textarea class="contact-form__textarea" name="anotacoes" id="anotacoes" rows="4" cols="50"
+                            placeholder="Suas anotações aqui"></textarea>
+                    </div>
+                </div>
+
+                <div class="contact-form__linha">
+                    <div class="contact-form__col-a"></div>
+                    <div class="contact-form__col-b">
+                        <button type="button" id="Cadastrar" name="Cadastrar"
+                            class="contact-form__button contact-form__input--metade"
+                            onclick="return MinhaFuncao()">Cadastrar</button>
+                        <button type="reset" id="Limpar" name="Limpar"
+                            class="contact-form__button contact-form__input--metade">Limpar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
 
 </body>
+
+<script>
+    function MinhaFuncao() {
+        let nome = document.getElementById('nome').value.trim();
+        let sobrenome = document.getElementById('sobrenome').value.trim();
+        let email = document.getElementById('email').value.trim();
+        let pais = document.getElementById('pais').value.trim();
+        let ddd = document.getElementById('ddd').value.trim();
+        let telefone = document.getElementById('telefone').value.trim();
+        let cep = document.getElementById('cep').value.trim();
+        let rua = document.getElementById('rua').value.trim();
+        let numero = document.getElementById('numero').value.trim();
+        let complemento = document.getElementById('complemento').value.trim();
+        let bairro = document.getElementById('bairro').value.trim();
+        let cidade = document.getElementById('cidade').value.trim();
+        let estado = document.getElementById('estado').value.trim();
+        let anotacoes = document.getElementById('anotacoes').value.trim();
+
+        if (nome.length == 0) {
+            formError('nome');
+        } else {
+            ReiniciaBorda('nome');
+        }
+
+        if (sobrenome.length == 0) {
+            formError('sobrenome');
+        } else {
+            ReiniciaBorda('sobrenome');
+        }
+        if (email.length == 0) {
+            formError('email');
+        } else {
+            ReiniciaBorda('email');
+        }
+        if (pais.length == 0) {
+            formError('pais');
+        } else {
+            ReiniciaBorda('pais');
+        }
+        if (ddd.length == 0) {
+            formError('ddd');
+        } else {
+            ReiniciaBorda('ddd');
+        }
+        if (telefone.length == 0) {
+            formError('telefone');
+        } else {
+            ReiniciaBorda('telefone');
+        }
+        if (cep.length == 0) {
+            formError('cep');
+        } else {
+            ReiniciaBorda('cep');
+        }
+        if (rua.length == 0) {
+            formError('rua');
+        } else {
+            ReiniciaBorda('rua');
+        }
+        if (numero.length == 0) {
+            formError('numero');
+        } else {
+            ReiniciaBorda('numero');
+        }
+
+        if (complemento.length == 0) {
+            formError('complemento');
+        } else {
+            ReiniciaBorda('complemento');
+        }
+        if (bairro.length == 0) {
+            formError('bairro');
+        } else {
+            ReiniciaBorda('bairro');
+        }
+        if (cidade.length == 0) {
+            formError('cidade');
+        } else {
+            ReiniciaBorda('cidade');
+        }
+        if (estado.length == 0) {
+            formError('estado');
+        } else {
+            ReiniciaBorda('estado');
+        }
+        if (anotacoes.length == 0) {
+            formError('anotacoes');
+        } else {
+            ReiniciaBorda('anotacoes');
+        }
+
+
+
+
+
+        // console.log(`
+        // Nome: ${nome}
+        // Sobrenome: ${sobrenome}
+        // E-mail: ${email}
+        // Telefone: ${pais} ${ddd} ${telefone}
+        // Endereço: ${rua}, ${numero} - ${complemento}
+        // ${bairro} - ${cidade} - ${estado} - CEP: ${cep}
+        // Anotações: ${anotacoes}
+        // `);
+    }
+
+    //função que pinta a cor do campo que falta preencher
+    function formError(fieldId) {
+        document.getElementById(fieldId).style.border = '1px solid red';
+        document.getElementById(fieldId).focus();
+    }
+
+    function ReiniciaBorda(fieldId) {
+        document.getElementById(fieldId).style.border = 'none';
+    }
+
+</script>
+
+</main>
 
 </html>
