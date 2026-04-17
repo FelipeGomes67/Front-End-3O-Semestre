@@ -1,0 +1,93 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "contatos": [
+    {
+      "id": "1",
+      "nome": "Felipe",
+      "sobrenome": "Gomes",
+      "email": "gomes@gmail.com"
+    },
+    {
+      "nome": "Julio Cesar",
+      "sobrenome": "Avelar",
+      "email": "julio@gmail.com",
+      "id": "pXF_Fcbe8gM"
+    },
+    {
+      "nome": "Salgado",
+      "sobrenome": "Felipe",
+      "email": "Felipe@gmail.com",
+      "id": "XDof8lQzQIc"
+    },
+    {
+      "nome": "Vieira",
+      "sobrenome": "Carvalho",
+      "email": "Vieira@gmail.com",
+      "id": "iBhUFLWodZs"
+    },
+    {
+      "nome": "Cauhe",
+      "sobrenome": "Sanches",
+      "email": "Cauhe@gmail.com",
+      "id": "al4at7-UYpk"
+    },
+    {
+      "nome": "João",
+      "sobrenome": "Victor",
+      "email": "Joao@gmail.com",
+      "id": "_2gQYQfZHxo"
+    },
+    {
+      "nome": "Felipe",
+      "sobrenome": "Torolho",
+      "id": "4yerMvZtFbA"
+    }
+  ],
+  "produtos": [
+    {
+      "id": "1",
+      "nome": "Notebook",
+      "preco": 22.9,
+      "quantidade": 1
+    },
+    {
+      "id": "2",
+      "nome": "Mouse",
+      "preco": 10.9,
+      "quantidade": 1
+    },
+    {
+      "id": "3",
+      "nome": "Teclado",
+      "preco": 15.9,
+      "quantidade": 1
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

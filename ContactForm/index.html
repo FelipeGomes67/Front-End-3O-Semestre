@@ -54,7 +54,7 @@
                     <div class="contact-form__col-a"><label class="contact-form__label" for="endereco">Endereço</label>
                     </div>
                     <div class="contact-form__col-b">
-                        <input class="contact-form__input contact-form__input--quarto" name="cep" id="cep" type="text"
+                        <input class="contact-form__input contact-form__input--quarto" name="cep" id="cep" type="number" onblur="buscarEndereco(this.value)"
                             placeholder="cep: 99999-999">
                         <input class="contact-form__input contact-form__input--metade" name="rua" id="rua" type="text"
                             placeholder="Rua lá de Casa">
@@ -97,7 +97,7 @@
                     <div class="contact-form__col-b">
                         <button type="button" id="Cadastrar" name="Cadastrar"
                             class="contact-form__button contact-form__input--metade"
-                            onclick="return MinhaFuncao()">Cadastrar</button>
+                            onclick="return validarFormulario()">Cadastrar</button>
                         <button type="reset" id="Limpar" name="Limpar"
                             class="contact-form__button contact-form__input--metade">Limpar</button>
                     </div>
@@ -108,122 +108,7 @@
 
 </body>
 
-<script>
-    function MinhaFuncao() {
-        let nome = document.getElementById('nome').value.trim();
-        let sobrenome = document.getElementById('sobrenome').value.trim();
-        let email = document.getElementById('email').value.trim();
-        let pais = document.getElementById('pais').value.trim();
-        let ddd = document.getElementById('ddd').value.trim();
-        let telefone = document.getElementById('telefone').value.trim();
-        let cep = document.getElementById('cep').value.trim();
-        let rua = document.getElementById('rua').value.trim();
-        let numero = document.getElementById('numero').value.trim();
-        let complemento = document.getElementById('complemento').value.trim();
-        let bairro = document.getElementById('bairro').value.trim();
-        let cidade = document.getElementById('cidade').value.trim();
-        let estado = document.getElementById('estado').value.trim();
-        let anotacoes = document.getElementById('anotacoes').value.trim();
-
-        if (nome.length == 0) {
-            formError('nome');
-        } else {
-            ReiniciaBorda('nome');
-        }
-
-        if (sobrenome.length == 0) {
-            formError('sobrenome');
-        } else {
-            ReiniciaBorda('sobrenome');
-        }
-        if (email.length == 0) {
-            formError('email');
-        } else {
-            ReiniciaBorda('email');
-        }
-        if (pais.length == 0) {
-            formError('pais');
-        } else {
-            ReiniciaBorda('pais');
-        }
-        if (ddd.length == 0) {
-            formError('ddd');
-        } else {
-            ReiniciaBorda('ddd');
-        }
-        if (telefone.length == 0) {
-            formError('telefone');
-        } else {
-            ReiniciaBorda('telefone');
-        }
-        if (cep.length == 0) {
-            formError('cep');
-        } else {
-            ReiniciaBorda('cep');
-        }
-        if (rua.length == 0) {
-            formError('rua');
-        } else {
-            ReiniciaBorda('rua');
-        }
-        if (numero.length == 0) {
-            formError('numero');
-        } else {
-            ReiniciaBorda('numero');
-        }
-
-        if (complemento.length == 0) {
-            formError('complemento');
-        } else {
-            ReiniciaBorda('complemento');
-        }
-        if (bairro.length == 0) {
-            formError('bairro');
-        } else {
-            ReiniciaBorda('bairro');
-        }
-        if (cidade.length == 0) {
-            formError('cidade');
-        } else {
-            ReiniciaBorda('cidade');
-        }
-        if (estado.length == 0) {
-            formError('estado');
-        } else {
-            ReiniciaBorda('estado');
-        }
-        if (anotacoes.length == 0) {
-            formError('anotacoes');
-        } else {
-            ReiniciaBorda('anotacoes');
-        }
-
-
-
-
-
-        // console.log(`
-        // Nome: ${nome}
-        // Sobrenome: ${sobrenome}
-        // E-mail: ${email}
-        // Telefone: ${pais} ${ddd} ${telefone}
-        // Endereço: ${rua}, ${numero} - ${complemento}
-        // ${bairro} - ${cidade} - ${estado} - CEP: ${cep}
-        // Anotações: ${anotacoes}
-        // `);
-    }
-
-    //função que pinta a cor do campo que falta preencher
-    function formError(fieldId) {
-        document.getElementById(fieldId).style.border = '1px solid red';
-        document.getElementById(fieldId).focus();
-    }
-
-    function ReiniciaBorda(fieldId) {
-        document.getElementById(fieldId).style.border = 'none';
-    }
-
-</script>
+<script src="js/script.js"></script>
 
 </main>
 
