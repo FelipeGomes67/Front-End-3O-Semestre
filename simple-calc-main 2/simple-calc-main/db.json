@@ -1,0 +1,12 @@
+{
+  "simpleCalc": [
+    {
+      "n1": 123,
+      "n2": 321,
+      "op": "divisao",
+      "resultado": "0.38",
+      "id": "CEp2ncNiryM"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
