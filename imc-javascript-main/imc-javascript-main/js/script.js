@@ -32,22 +32,17 @@ function calcular() {
     const tabela = document.getElementById("cadastro");
 
     if (tabela) {
-
-    tabela.innerHTML +=
-        `
-        <tr>
-        <td>${nome}</td>
-        <td>${altura}m</td>
-        <td>${peso}kg</td>
-        <td>${imc.toFixed(2)}</td>
-        <td>${textoSituacao}</td>
-        </tr>
-        `;
+        buscarIMCs();
 
         document.getElementById("nome").value = "";
         document.getElementById("altura").value = "";
         document.getElementById("peso").value = "";
-        alert(`Os dados de ${nome} foram cadastrados com sucesso`);
+        alert(`${nome} foi cadastrado com sucesso no banco
+                Nome: ${nome}
+                Altura: ${altura}
+                IMC: ${imc.toFixed(2)}
+                Situação: ${textoSituacao}
+            `);
     } else {
         alert("Não foi possível cadastrar");
     }
@@ -106,6 +101,10 @@ async function cadastrarNaApi(objetoIMC) {
     try {
     const retorno = await fetch("http://localhost:3000/IMC");
     const dados = await retorno.json();
+
+        dados.sort((a, b) =>{
+            return a.nome.localeCompare(b.nome);
+        })
 
     console.log(dados);
 

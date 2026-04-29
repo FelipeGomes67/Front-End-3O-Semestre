@@ -6,6 +6,27 @@
       "op": "divisao",
       "resultado": "0.38",
       "id": "CEp2ncNiryM"
+    },
+    {
+      "n1": 100,
+      "n2": 12,
+      "op": "subtracao",
+      "resultado": "88.00",
+      "id": "tuIK20UdJb0"
+    },
+    {
+      "n1": 67,
+      "n2": 0,
+      "op": "subtracao",
+      "resultado": "67.00",
+      "id": "gUfMsjwelRY"
+    },
+    {
+      "n1": 123,
+      "n2": 322,
+      "op": "divisao",
+      "resultado": "0.38",
+      "id": "XUDdsY3bxDo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

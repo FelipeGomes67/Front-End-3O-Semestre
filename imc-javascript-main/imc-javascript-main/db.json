@@ -1,4 +1,13 @@
 {
-  "IMC": [],
+  "IMC": [
+    {
+      "nome": "Felip123",
+      "altura": 123,
+      "peso": 321,
+      "imc": 0.021217529248463218,
+      "situacao": "Magreza grave",
+      "id": "G4XEukHCzxo"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
