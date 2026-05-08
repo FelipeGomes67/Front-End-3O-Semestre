@@ -1,0 +1,13 @@
+.ex09 {
+    text-align: center;
+    width: 350px;
+    height: 250px;
+    background-color: bisque;
+    border: 2px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.ex09:hover{
+    box-shadow: 1px 1px 15px black;
+}
+
