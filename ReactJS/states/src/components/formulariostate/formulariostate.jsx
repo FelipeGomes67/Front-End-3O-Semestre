@@ -4,6 +4,9 @@ function FormularioState() {
     const [Nome, setNome] = useState("sem texto")
     const [sobrenome, setSobrenome] = useState("sem texto")
 
+    function pegarSobrenome(evento) {
+        setSobrenome(evento.target.value)
+    }
 
     return (
         <div>
@@ -21,9 +24,8 @@ function FormularioState() {
             <input
                 type="text"
                 placeholder="Digite seu sobrenome"
-                onChange={(evento) => {
-                    setSobrenome(evento.target.value)
-                }} />
+                onChange={pegarSobrenome} 
+                />
             <br />
             <label htmlFor="">Texto Digitado <strong>{Nome} {sobrenome}</strong></label>
         </div>

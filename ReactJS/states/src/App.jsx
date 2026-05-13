@@ -2,6 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import Contador from './components/contador/contador'
 import FormularioState from './components/formulariostate/formulariostate'
+import CadFruta from './components/cadfruta/cadfruta'
+import Produto from './components/produto/produto'
 
 function App() {
   // Variavel privada so pode ser mudada pela funcao setTitulo
@@ -14,17 +16,17 @@ function App() {
       setTitulo("Apple")
   }
   return (
-    <>
-    <h1>Minha Página de {Titulo}</h1>
-    <button onClick={mudarTexto}>Mudar Texto</button>
-    <br />
-    <button onClick={mudarTexto2}>Apple</button>
+    // <>
+    // <h1>Minha Página de {Titulo}</h1>
+    // <button onClick={mudarTexto}>Mudar Texto</button>
+    // <br />
+    // <button onClick={mudarTexto2}>Apple</button>
 
-    <Contador />
-    <br />
-    <FormularioState />
-    </>
-
+    // <Contador />
+    // <br />
+    // <FormularioState />
+    // </>
+    <CadFruta />
   )
 }
 
