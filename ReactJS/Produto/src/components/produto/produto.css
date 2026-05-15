@@ -6,7 +6,7 @@
 
 body{
 
-    background: linear-gradient(to bottom, #000000, #ff0000);
+    background: linear-gradient(to top, #000000, #3C0061);
 }
 
 .cabecalho {
@@ -14,14 +14,15 @@ body{
     justify-content: center;
     gap: 10px;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .titulo--cinza {
-    color: gray;
+    color: black;
 }
 
 .titulo--vermelho {
-    color: red;
+    color: #6E00B3;
 }
 
 
@@ -50,6 +51,15 @@ body{
     cursor: pointer;
 }
 
+.btn--cadastro__cancel {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 .produtos{
     display: flex;
     width: 100%;
@@ -61,7 +71,7 @@ body{
 .produto {
     text-align: center;
     width: 350px;
-    height: 30%;
+    height: 35%;
     background-color: transparent;
     border: 2px solid black;
     border-radius: 20px;
@@ -69,10 +79,59 @@ body{
 }
 
 .produto:hover {
-    box-shadow: 1px 1px 15px black;
+    box-shadow: 1px 1px 15px white;
 }
 
 .produto img {
     width: 300px;
     height: 300px;
 }
+
+.divbotao{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.botoes{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.delet{
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.comprar{
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.edit{
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
