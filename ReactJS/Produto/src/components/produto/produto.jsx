@@ -1,6 +1,7 @@
 import "./produto.css"
 import { useEffect, useState } from "react"
 import img from '../../assets/image.jpg'
+import api from "../../services/services"
 
 export default function Produto() {
 
@@ -10,7 +11,7 @@ export default function Produto() {
     const [quantidade, setQuantidade] = useState(0)
     const [imagem, setImagem] = useState(img)
     const [editar, setEditar] = useState(false)
-    const [idEditado, setIdEditado] = useState(null)
+    const [id, setid] = useState(null)
 
     const [arrProdutos, setArrProdutos] = useState([
     ])
@@ -22,7 +23,7 @@ export default function Produto() {
         // return false;
 
         // validar o formulário
-        if (nome.trim().length == 0 || descricao.trim().length == 0 || isNaN(preco) || isNaN(quantidade)) {
+        if (nome.trim().length == 0 || descricao.trim().length == 0 || isNaN(preco) || preco <= 0 || isNaN(quantidade) || quantidade <= 0) {
             alert("Preencha todos os campos corretamente!")
             return false;
         }
@@ -38,17 +39,11 @@ export default function Produto() {
 
         //cadastrar na api
         try {
-            const retornoAPI = await fetch('http://localhost:3000/produtos', {
-                method: 'POST',
-                body: JSON.stringify(objCadastro),
-                headers: {
-                    'Content-Type': 'application/json; carset=UTF-8'
-                }
-            })
+            const retornoAPI = await api.post('/produtos', objCadastro)
 
             console.log(retornoAPI);
             if (retornoAPI.status == 201) {
-                const dadosCadastrados = await retornoAPI.json()
+                const dadosCadastrados = await retornoAPI.data
                 console.log(dadosCadastrados)
                 setArrProdutos([...arrProdutos, dadosCadastrados])
 
@@ -66,6 +61,7 @@ export default function Produto() {
     }
 
     function limparFormulario() {
+        setid(0)
         setNome("")
         setDescricao("")
         setQuantidade(0)
@@ -80,9 +76,8 @@ export default function Produto() {
 
     async function getProdutos() {
         try {
-            const retornoAPI = await fetch('http://localhost:3000/produtos')
-            const dados = await retornoAPI.json()
-            setArrProdutos(dados)
+            const retornoAPI = await api.get('/produtos');
+            setArrProdutos(retornoAPI.data)
         } catch (error) {
             console.log("Erro ao buscar os produtos")
             console.log(error)
@@ -91,10 +86,13 @@ export default function Produto() {
     }
 
     async function deletar(id) {
+
+        if(!confirm("Deseja realmente deletar o produto?")) {
+            return false;
+        }
+
         try {
-            const retornoAPI = await fetch(`http://localhost:3000/produtos/${id}`, {
-                method: 'delete'
-            })
+            const retornoAPI = await api.delete(`/produtos/${id}`);
 
             if (retornoAPI.status == 200 && retornoAPI.statusText == "OK") {
                 alert("Produto deletado com sucesso!")
@@ -117,41 +115,37 @@ export default function Produto() {
 
     async function editarProduto(e) {
         e.preventDefault()
-        const idEditado = arrProdutos.find((prod) => prod.nome == nome).id
 
-        console.log(idEditado)
+        // validar o formulário
+        if (nome.trim().length == 0 || descricao.trim().length == 0 || isNaN(preco) || preco <= 0 || isNaN(quantidade) || quantidade <= 0) {
+            alert("Preencha todos os campos corretamente!")
+            return false;
+        }
 
+        //gerar o obejto que vai para api
         const objCadastro = {
             nome,
             preco,
             descricao,
             quantidade,
+            imagem: "image.jpg"
         }
 
         console.log(objCadastro)
 
         try {
-            const retornoAPI = await fetch(`http://localhost:3000/produtos/${idEditado}`, {
-                method: 'put',
-                body: JSON.stringify(objCadastro),
-                headers: {
-                    'Content-Type': 'application/json; charset=UTF-8'
-                }
+            const retornoAPI = await api.put(`/produtos/${id}`, objCadastro);
 
-            })
             if (retornoAPI.status == 200) {
                 alert("Produto editado com sucesso!")
-                const dadosEditados = await retornoAPI.json()
-                const novaLista = arrProdutos.map((prod) => {
-                    if (prod.id == idEditado) {
-                        return { ...prod, ...dadosEditados }
-                    }
-                    return prod
-                })
-                setArrProdutos(novaLista)
+                getProdutos()
+                limparFormulario()
+                setEditar(false)
             } else {
                 alert("Não foi possível editar o produto")
             }
+
+
         }
         catch (error) {
             alert("Não foi possível editar o produto")
@@ -189,7 +183,7 @@ export default function Produto() {
                         }}
                     >Cancelar
                     </button>}
-                    <button type="submit" className="btn--cadastro">Adicionar Produto</button>
+                    <button type="submit" className="btn--cadastro">{editar ? "Editar Produto" : "Adicionar Produto"}</button>
                 </div>
             </form>
 
@@ -206,20 +200,22 @@ export default function Produto() {
 
                             <a href="#" className="comprar">Comprar</a>
 
-                            <a className="edit" href="" onClick={(e) => {
+                            <a className="edit" href="#" onClick={(e) => {
                                 e.preventDefault()
 
 
                                 setEditar(true)
-                                setIdEditado(prod.id)
 
+                                setid(prod.id)
                                 setNome(prod.nome)
                                 setPreco(prod.preco)
                                 setDescricao(prod.descricao)
                                 setQuantidade(prod.quantidade)
+
+
                             }}>Editar</a>
 
-                            <a className="delet" href="" onClick={(e) => {
+                            <a className="delet" href="#" onClick={(e) => {
                                 e.preventDefault()
                                 deletar(prod.id)
                             }}>Apagar</a>
