@@ -1,15 +1,15 @@
-import "./CadastroFilme.css";
-import Header from "../../components/Header/Header.jsx";
-import Footer from "../../components/footer/Footer.jsx";
+import "./CadastroFilme.css"
+import Header from "../../components/header/Header"
+import Footer from "../../components/footer/Footer"
 
 const CadastroFilme = () => {
     return (
         <>
         <Header />
-            <h1>Cadastro de Filmes</h1>
+        <h1>Cadastro de Filmes</h1>
         <Footer />
         </>
     )
 }
 
-export default CadastroFilme;
+export default CadastroFilme
