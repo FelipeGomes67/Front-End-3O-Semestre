@@ -12,10 +12,10 @@ const CadastroFilme = () => {
 
     // States e variáveis
     const [valor, setValor] = useState("");
-    const [valorGenero, setValorGenero] = useState("");
+    const [idGenero, setIdGenero] = useState("");
     const [editar, setEditar] = useState(false);
-    const [listaGeneros, setListaGeneros] = useState([]);
     const [listaFilmes, setListaFilmes] = useState([]);
+    const [listaGeneros, setListaGeneros] = useState([]);
     // const [idEditar, setIdEditar] = useState(0);
 
     //Get
@@ -49,7 +49,7 @@ const CadastroFilme = () => {
         }
     }
     //Post
-    const cadastrarFilme = (e) => {
+    const cadastrarFilme = async (e) => {
         e.preventDefault();
 
         if (valor.trim().length === 0) {
@@ -61,14 +61,29 @@ const CadastroFilme = () => {
             });
             return false;
         }
-        const objCadastro = {
-            idFilme: "",
-            titulo: valor,
-            idGenero: valorGenero
-        };
+
+        if (!idGenero) {
+            Alerta({
+                title: 'Cadastro de Filme',
+                text: 'Por Favor, selecione um gênero',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+            return false;
+        }
 
         try {
-            const retornoAPI = api.post("/Filme", objCadastro);
+            // Criando o esqueleto que o [FromForm] exige
+            const formData = new FormData();
+            formData.append("titulo", valor);
+            formData.append("idGenero", idGenero);
+
+            // Se você tiver um state para a imagem (ex: imagemSelecionada)
+            // formData.append("imagem", imagemSelecionada);
+
+            // Enviando com o Content-Type correto implicitamente
+            const retornoAPI = await api.post("/Filme", formData);
+
             if (retornoAPI.status === 201 || retornoAPI.status === 200) {
                 Alerta({
                     title: 'Cadastro de Filme',
@@ -76,8 +91,12 @@ const CadastroFilme = () => {
                     icon: 'success',
                     confirmButtonText: 'OK'
                 });
-                limparFormulario();
-                getFilmes();
+
+                // Limpa o input após cadastrar para o usuário poder digitar outro
+                setValor("");
+                setIdGenero("");
+
+                getFilmes(); // Atualiza a lista na tela
             } else {
                 Alerta({
                     title: 'Cadastro de Filme',
@@ -87,7 +106,18 @@ const CadastroFilme = () => {
                 });
             }
         } catch (error) {
-            console.log(error);
+            if (error.response && error.response.data) {
+                  // Altere para inspecionar o objeto completo e a mensagem interna do banco
+                console.dir(error.response.data);
+
+                // Se a sua API retornar um formato padrão de validação do .NET (ProblemDetails)
+                if (error.response.data.errors) {
+                    console.table(error.response.data.errors);
+                }
+            } else {
+                console.error("Erro geral:", error);
+            }
+
             Alerta({
                 title: 'Cadastro de Filme',
                 text: 'Erro ao chamar a API no cadastro',
@@ -144,16 +174,16 @@ const CadastroFilme = () => {
                     confirmButtonText: 'OK'
                 });
             }
-            }catch (error) {
-                console.log(error);
-                Alerta({
-                    title: 'Excluir Filme',
-                    text: 'Erro ao chamar a API na exclusão',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-            }
+        } catch (error) {
+            console.log(error);
+            Alerta({
+                title: 'Excluir Filme',
+                text: 'Erro ao chamar a API na exclusão',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         }
+    }
 
 
 
@@ -187,6 +217,8 @@ const CadastroFilme = () => {
                     funcCadastro={editar ? editarFilme : cadastrarFilme}
                     valor={valor}
                     setValor={setValor}
+                    idGenero={idGenero}
+                    setIdGenero={setIdGenero}
                     btnEditar={editar}
                     cancelarEdicao={limparFormulario}
                     listaGeneros={listaGeneros}

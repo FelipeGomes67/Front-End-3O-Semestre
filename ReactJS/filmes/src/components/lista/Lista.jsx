@@ -5,7 +5,23 @@ import Editar from "../../assets/img/pen-to-square-solid.svg";
 import Excluir from "../../assets/img/trash-can-regular.svg";
 
 const Lista = (props) => {
+        const obterNomeGenero = (item) => {
+            if (item.genero?.nome) {
+                return item.genero.nome;
+            }
+            if (item.idGeneroNavigation?.nome) {
+                return item.idGeneroNavigation.nome;
+            }
+
+            if (props.listaGeneros && (item.idGenero || item.genero?.idGenero)) {
+                const idGen = item.idGenero ?? item.genero?.idGenero;
+                const genero = props.listaGeneros.find((g) => g.idGenero === idGen || g.id === idGen);
+                return genero?.nome || '-';
+            }
+            return '-';
+        }
     return (
+
         <section className="layout_grid">
             <div className="listagem">
 
@@ -34,11 +50,8 @@ const Lista = (props) => {
                                             {props.tipoLista === "genero" ? item.nome : item.titulo}
                                         </td>
 
-                                        <td data-cell="Gênero" style={{ display: props.visibilidade }}>
-                                            
-                                            {props.tipoLista === "filme" ? (
-                                                props.listaGeneros?.find(g => g.idGenero === item.idGenero)?.nome || 'Sem Gênero'
-                                            ) : '-'}
+                                        <td data-cell="Gênero" style={{display: props.visibilidade}}>
+                                            {props.tipoLista === "filme" ? obterNomeGenero(item) : '-'}
                                         </td>
 
                                         <td data-cell="Editar">
@@ -69,5 +82,6 @@ const Lista = (props) => {
         </section>
     )
 }
+
 
 export default Lista;
