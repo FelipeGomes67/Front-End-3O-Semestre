@@ -5,7 +5,7 @@ import axios from "axios";
 const apiPort = "7007";//porta do swagger
 
 // Monta a URL base para a API local, usando a porta definida
-const localApi = `http://localhost:${apiPort}/api`;//end. do swagger
+const localApi = `https://localhost:${apiPort}/api`;//end. do swagger
 
 // Define uma variável para uma API externa, mas no momento ela está como 'null' (não sendo usada)
 const externalApi = null;

@@ -4,7 +4,7 @@ import Footer from "../../components/footer/Footer";
 import Cadastro from "../../components/cadastro/Cadastro";
 import Lista from "../../components/lista/Lista";
 import { useEffect, useState } from "react";
-import api from "../../services/services";
+import api from "../../services/Services";
 import { Alerta } from "../../components/alerta/Alerta";
 
 
@@ -26,7 +26,7 @@ const CadastroGenero = () => {
       const dados = retornoAPI.data; //extrai os dados retornados
       setListaGeneros(dados); //guarda os dados no state
     } catch (error) {
-      console.error(error);
+      console.log(error);
       Alerta({
         title: 'Cadastro de Gênero',
         text: 'Problema ao carregar dados da api',
@@ -79,7 +79,7 @@ const CadastroGenero = () => {
           
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
       Alerta({
         title: 'Cadastro de Gênero',
         text: 'Erro ao chamar a API no cadastro',
@@ -196,7 +196,7 @@ const CadastroGenero = () => {
         icon: 'error',
         confirmButtonText: 'OK'
       });
-      console.error(error);
+      console.log(error);
     }
   };
 
