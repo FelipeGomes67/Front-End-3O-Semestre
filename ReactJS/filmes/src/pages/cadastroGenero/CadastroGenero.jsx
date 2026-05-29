@@ -26,7 +26,6 @@ const CadastroGenero = () => {
       const dados = retornoAPI.data; //extrai os dados retornados
       setListaGeneros(dados); //guarda os dados no state
     } catch (error) {
-      console.log(error);
       Alerta({
         title: 'Cadastro de Gênero',
         text: 'Problema ao carregar dados da api',
@@ -53,6 +52,7 @@ const CadastroGenero = () => {
     }
 
     const objCadastro = {
+      idGenero: "",
       nome: valor,
     };
 

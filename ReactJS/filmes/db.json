@@ -2,25 +2,32 @@
   "Genero": [
     {
       "nome": "Comédia",
-      "id": "3RzprHtarZA"
+      "idGenero": "3RzprHtarZA",
+      "id": "x5EYXXF-e7M"
     },
     {
       "nome": "Ação",
-      "id": "4ZmoBIPLpnw"
+      "idGenero": "4ZmoBIPLpnw",
+      "id": "ZHcW_tQPCnM"
     },
     {
       "nome": "Terror",
-      "id": "Y2HHOktOtrQ"
-    },
-    {
-      "nome": "Torolho",
-      "id": "5qNfbUabIO8"
+      "idGenero": "Y2HHOktOtrQ",
+      "id": "MBQanp1KheU"
     }
   ],
   "Filme": [
     {
-      "nome": "Arthur Goblin",
-      "id": "cqZWRbXhT3w"
+      "idFilme": "",
+      "titulo": "Capitão Torolho",
+      "idGenero": null,
+      "id": "f22wEc8k55g"
+    },
+    {
+      "idFilme": "",
+      "titulo": "Torolho",
+      "idGenero": null,
+      "id": "IHXG6d8znxU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
