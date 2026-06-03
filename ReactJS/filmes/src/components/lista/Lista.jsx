@@ -29,18 +29,14 @@ const Lista = (props) => {
                 <hr />
                 <div className="tabela">
                     <table>
-                        {/* cabeçalho da tabela: */}
                         <thead>
-                            {/* tr => table row */}
                             <tr className="table_cabecalho">
-                                {/* th => table head */}
                                 <th>Nome</th>
                                 <th style={{ display: props.visibilidade }}>Gênero</th>
                                 <th>Editar</th>
                                 <th>Excluir</th>
                             </tr>
                         </thead>
-                        {/* tbody => corpo da tabela */}
                         <tbody>
                             {props.lista && props.lista.length > 0 ? (
                                 props.lista.map((item, index) => (

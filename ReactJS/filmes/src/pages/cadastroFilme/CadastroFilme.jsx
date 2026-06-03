@@ -16,7 +16,7 @@ const CadastroFilme = () => {
     const [editar, setEditar] = useState(false);
     const [listaFilmes, setListaFilmes] = useState([]);
     const [listaGeneros, setListaGeneros] = useState([]);
-    // const [idEditar, setIdEditar] = useState(0);
+    const [idEditar, setIdEditar] = useState(0);
 
     //Get
     const getGeneros = async () => {
@@ -107,7 +107,7 @@ const CadastroFilme = () => {
             }
         } catch (error) {
             if (error.response && error.response.data) {
-                  // Altere para inspecionar o objeto completo e a mensagem interna do banco
+                // Altere para inspecionar o objeto completo e a mensagem interna do banco
                 console.dir(error.response.data);
 
                 // Se a sua API retornar um formato padrão de validação do .NET (ProblemDetails)
@@ -126,15 +126,57 @@ const CadastroFilme = () => {
             });
         }
     }
+
+    const preEditar = (item) => {
+        setValor(item.titulo);
+        setIdGenero(item.idGenero || item.genero?.idGenero || "");
+        setIdEditar(item.id || item.idFilme);
+        setEditar(true);
+    }
+
+
     //Put
-    const editarFilme = (e) => {
+    const editarFilme = async (e) => {
         e.preventDefault();
-        Alerta({
-            title: 'Cadastro de Filme',
-            text: 'Editar filme em desenvolvimento',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        })
+
+        if (valor.trim().length === 0 || !idGenero) {
+            Alerta({
+                title: 'Edição de Filme',
+                text: 'Preencha todos os campos obrigatórios!',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+            return false;
+        }
+
+        try {
+            // Como sua API espera FilmeDTO no Put, usamos FormData por causa da Imagem
+            const formData = new FormData();
+            formData.append("titulo", valor);
+            formData.append("idGenero", idGenero);
+
+            // Envia para a rota URL contendo o ID: /api/Filme/{id}
+            const retornoAPI = await api.put(`/Filme/${idEditar}`, formData);
+
+            if (retornoAPI.status === 204 || retornoAPI.status === 200) {
+                Alerta({
+                    title: 'Edição de Filme',
+                    text: 'Filme atualizado com sucesso!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+                limparFormulario();
+                getFilmes();
+            }
+        } catch (error) {
+            console.error("Erro na edição:", error.response?.data || error);
+            Alerta({
+                title: 'Edição de Filme',
+                text: 'Erro ao salvar alterações do filme.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
     }
     //Delete
     const excluirFilme = async (item) => {
@@ -188,13 +230,12 @@ const CadastroFilme = () => {
 
 
     const limparFormulario = () => {
-        Alerta({
-            title: 'Cadastro de Filme',
-            text: 'Limpar formulário em desenvolvimento',
-            icon: 'info',
-            confirmButtonText: 'OK'
-        })
+        setValor("");
+        setIdGenero("");
+        setIdEditar("");
+        setEditar(false);
     }
+
 
     // Funções
 
@@ -212,7 +253,7 @@ const CadastroFilme = () => {
                 {/* Formulário de cadastrar / editar */}
                 <Cadastro
                     tituloCadastro="Cadastro de Filme"
-                    //   visibilidade="none"
+                    // visibilidade="none"
                     placeholder="filme"
                     funcCadastro={editar ? editarFilme : cadastrarFilme}
                     valor={valor}
@@ -226,11 +267,10 @@ const CadastroFilme = () => {
 
                 <Lista
                     tituloLista="Lista de Filmes"
-                    // visibilidade="none"
                     lista={listaFilmes}
                     tipoLista="filme"
                     funcExcluir={excluirFilme}
-                // funcEditar={preEditar}
+                    funcEditar={preEditar}
                 />
 
             </main>
