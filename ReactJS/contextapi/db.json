@@ -1,0 +1,17 @@
+{
+  "Produto": [
+    {
+      "valor": "Torolho",
+      "id": "9hR552O1-AY"
+    },
+    {
+      "valor": "João",
+      "id": "BA18vrKnbvs"
+    },
+    {
+      "valor": "Becker",
+      "id": "e8kfWfXdWhE"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
