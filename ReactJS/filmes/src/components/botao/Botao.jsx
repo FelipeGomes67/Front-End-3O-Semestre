@@ -1,16 +1,20 @@
 import "./Botao.css"
 
 const Botao = (props) => {
-    return(
+    return (
 
-        <button 
-            className="botao" 
+        <button
+            className="botao"
             type={props.btnEditar ? "button" : "submit"}
-            onClick = {()=>{
-                if(props.btnEditar) {
+            onClick={() => {
+                if (props.btnEditar) {
                     // aqui na verdade chama limparFormulário
                     props.cancelarEdicao()
                     return false;
+                }
+
+                if (props.onclick) {
+                    props.onclick();
                 }
             }}
         >

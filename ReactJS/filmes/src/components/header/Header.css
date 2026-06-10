@@ -25,11 +25,15 @@ header{
 }
 
 .link_header{
-    margin-left: 45px;
-
     color: white;
-
     text-decoration: none;
+    margin-left: 0;
+}
+
+.nav_header{
+    display: flex;
+    align-items: center;
+    gap: 25px; /* espaço entre os itens */
 }
 
 @media screen and (max-width: 768px){

@@ -9,16 +9,11 @@ import { Alerta } from "../../components/alerta/Alerta"
 
 const CadastroFilme = () => {
 
-
-    // States e variáveis
     const [valor, setValor] = useState("");
     const [idGenero, setIdGenero] = useState("");
-    const [editar, setEditar] = useState(false);
     const [listaFilmes, setListaFilmes] = useState([]);
     const [listaGeneros, setListaGeneros] = useState([]);
-    const [idEditar, setIdEditar] = useState(0);
 
-    //Get
     const getGeneros = async () => {
         try {
             const retornoAPI = await api.get("/Genero");
@@ -48,7 +43,7 @@ const CadastroFilme = () => {
             })
         }
     }
-    //Post
+
     const cadastrarFilme = async (e) => {
         e.preventDefault();
 
@@ -73,15 +68,10 @@ const CadastroFilme = () => {
         }
 
         try {
-            // Criando o esqueleto que o [FromForm] exige
             const formData = new FormData();
             formData.append("titulo", valor);
             formData.append("idGenero", idGenero);
 
-            // Se você tiver um state para a imagem (ex: imagemSelecionada)
-            // formData.append("imagem", imagemSelecionada);
-
-            // Enviando com o Content-Type correto implicitamente
             const retornoAPI = await api.post("/Filme", formData);
 
             if (retornoAPI.status === 201 || retornoAPI.status === 200) {
@@ -91,12 +81,9 @@ const CadastroFilme = () => {
                     icon: 'success',
                     confirmButtonText: 'OK'
                 });
-
-                // Limpa o input após cadastrar para o usuário poder digitar outro
                 setValor("");
                 setIdGenero("");
-
-                getFilmes(); // Atualiza a lista na tela
+                getFilmes();
             } else {
                 Alerta({
                     title: 'Cadastro de Filme',
@@ -106,18 +93,7 @@ const CadastroFilme = () => {
                 });
             }
         } catch (error) {
-            if (error.response && error.response.data) {
-                // Altere para inspecionar o objeto completo e a mensagem interna do banco
-                console.dir(error.response.data);
-
-                // Se a sua API retornar um formato padrão de validação do .NET (ProblemDetails)
-                if (error.response.data.errors) {
-                    console.table(error.response.data.errors);
-                }
-            } else {
-                console.error("Erro geral:", error);
-            }
-
+            console.log(error);
             Alerta({
                 title: 'Cadastro de Filme',
                 text: 'Erro ao chamar a API no cadastro',
@@ -127,35 +103,54 @@ const CadastroFilme = () => {
         }
     }
 
-    const preEditar = (item) => {
-        setValor(item.titulo);
-        setIdGenero(item.idGenero || item.genero?.idGenero || "");
-        setIdEditar(item.id || item.idFilme);
-        setEditar(true);
-    }
+    const preEditar = async (item) => {
+        const idEditar = item.id || item.idFilme;
 
+        const { value: novoTitulo } = await Alerta({
+            title: "Editar Filme",
+            input: "text",
+            inputLabel: "Título do filme",
+            inputValue: item.titulo,
+            showCancelButton: true,
+            confirmButtonText: "Próximo",
+            cancelButtonText: "Cancelar",
+            inputValidator: (value) => {
+                if (!value || value.trim().length === 0)
+                    return "Preencha o campo de título!";
+            },
+        });
 
-    //Put
-    const editarFilme = async (e) => {
-        e.preventDefault();
+        if (!novoTitulo) return;
 
-        if (valor.trim().length === 0 || !idGenero) {
-            Alerta({
-                title: 'Edição de Filme',
-                text: 'Preencha todos os campos obrigatórios!',
-                icon: 'warning',
-                confirmButtonText: 'OK'
-            });
-            return false;
-        }
+        const opcoesGenero = {};
+        listaGeneros.forEach((g) => {
+            const id = g.idGenero || g.id;
+            opcoesGenero[id] = g.nome;
+        });
+
+        const idGeneroAtual = item.idGenero || item.genero?.idGenero || "";
+
+        const { value: novoIdGenero } = await Alerta({
+            title: "Editar Filme",
+            input: "select",
+            inputLabel: "Gênero do filme",
+            inputValue: idGeneroAtual,
+            inputOptions: opcoesGenero,
+            showCancelButton: true,
+            confirmButtonText: "Salvar",
+            cancelButtonText: "Cancelar",
+            inputValidator: (value) => {
+                if (!value) return "Selecione um gênero!";
+            },
+        });
+
+        if (!novoIdGenero) return;
 
         try {
-            // Como sua API espera FilmeDTO no Put, usamos FormData por causa da Imagem
             const formData = new FormData();
-            formData.append("titulo", valor);
-            formData.append("idGenero", idGenero);
+            formData.append("titulo", novoTitulo);
+            formData.append("idGenero", novoIdGenero);
 
-            // Envia para a rota URL contendo o ID: /api/Filme/{id}
             const retornoAPI = await api.put(`/Filme/${idEditar}`, formData);
 
             if (retornoAPI.status === 204 || retornoAPI.status === 200) {
@@ -165,20 +160,26 @@ const CadastroFilme = () => {
                     icon: 'success',
                     confirmButtonText: 'OK'
                 });
-                limparFormulario();
                 getFilmes();
+            } else {
+                Alerta({
+                    title: 'Edição de Filme',
+                    text: 'Algum problema aconteceu ao editar!',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
             }
         } catch (error) {
-            console.error("Erro na edição:", error.response?.data || error);
+            console.log(error);
             Alerta({
                 title: 'Edição de Filme',
-                text: 'Erro ao salvar alterações do filme.',
+                text: 'Erro ao chamar a API na edição',
                 icon: 'error',
                 confirmButtonText: 'OK'
             });
         }
     }
-    //Delete
+
     const excluirFilme = async (item) => {
         const idExcluir = item.id || item.idFilme;
 
@@ -227,19 +228,6 @@ const CadastroFilme = () => {
         }
     }
 
-
-
-    const limparFormulario = () => {
-        setValor("");
-        setIdGenero("");
-        setIdEditar("");
-        setEditar(false);
-    }
-
-
-    // Funções
-
-    // Ciclo de vida
     useEffect(() => {
         getGeneros();
         getFilmes();
@@ -250,18 +238,14 @@ const CadastroFilme = () => {
             <Header />
 
             <main>
-                {/* Formulário de cadastrar / editar */}
                 <Cadastro
                     tituloCadastro="Cadastro de Filme"
-                    // visibilidade="none"
                     placeholder="filme"
-                    funcCadastro={editar ? editarFilme : cadastrarFilme}
+                    funcCadastro={cadastrarFilme}
                     valor={valor}
                     setValor={setValor}
                     idGenero={idGenero}
                     setIdGenero={setIdGenero}
-                    btnEditar={editar}
-                    cancelarEdicao={limparFormulario}
                     listaGeneros={listaGeneros}
                 />
 
@@ -271,8 +255,8 @@ const CadastroFilme = () => {
                     tipoLista="filme"
                     funcExcluir={excluirFilme}
                     funcEditar={preEditar}
+                    listaGeneros={listaGeneros}
                 />
-
             </main>
 
             <Footer />
